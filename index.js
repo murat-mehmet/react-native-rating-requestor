@@ -1,5 +1,4 @@
 import { Platform, Alert, Linking } from "react-native";
-import * as StoreReview from 'react-native-store-review';
 import RatingsData from "./RatingsData";
 
 export const buttonTypes = {
@@ -120,12 +119,7 @@ export default class RatingRequestor {
         onPress: () => {
           RatingsData.recordRated();
           callback(true, "accept");
-          // This API is only available on iOS 10.3 or later
-					if (Platform.OS === 'ios' && StoreReview.isAvailable) {
-						StoreReview.requestReview();
-					} else {
-						Linking.openURL(this.storeUrl);
-					}
+	  Linking.openURL(this.storeUrl);
         },
         style: "default",
       }
